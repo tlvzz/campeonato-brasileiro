@@ -2,8 +2,8 @@ name: Atualizar HTML Diário
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Executa todos os dias à meia-noite UTC
-  workflow_dispatch:     # Permite execução manual
+    - cron: '0 0 * * *'  # Executa todos os dias à meia-noite UTC
+  workflow_dispatch:      # Permite execução manual
 
 jobs:
   atualizar-html:
@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v4
+        with:
+          ref: main  # Garante que está usando a branch main
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -31,4 +33,3 @@ jobs:
           git add .
           git commit -m "Atualiza HTML automaticamente [skip ci]" || echo "Sem mudanças"
           git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/tlvzz/campeonato-brasileiro.git HEAD:main
-
