@@ -30,4 +30,5 @@ jobs:
           git config user.email "github-actions@github.com"
           git add .
           git commit -m "Atualiza HTML automaticamente [skip ci]" || echo "Sem mudanças"
-          git push
+          git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/tlvzz/campeonato-brasileiro.git HEAD:main
+
