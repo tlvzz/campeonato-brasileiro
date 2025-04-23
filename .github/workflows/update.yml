@@ -2,8 +2,8 @@ name: Atualizar HTML Diário
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Executa todos os dias à meia-noite UTC
-  workflow_dispatch:      # Permite execução manual
+    - cron: '0 0 * * *' # Executa todos os dias à meia-noite UTC
+  workflow_dispatch:     # Permite execução manual
 
 jobs:
   atualizar-html:
@@ -13,7 +13,7 @@ jobs:
       - name: Clonar repositório
         uses: actions/checkout@v4
         with:
-          ref: main  # Garante que está usando a branch main
+          token: ${{ secrets.GH_PAT }}  # Usa o seu token pessoal com permissão de push
 
       - name: Configurar Python
         uses: actions/setup-python@v5
