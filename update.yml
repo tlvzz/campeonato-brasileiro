@@ -1,0 +1,36 @@
+name: Atualizar HTML Diário
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Executa todos os dias à meia-noite
+  workflow_dispatch:  # Permite executar manualmente pela interface
+
+jobs:
+  update-html:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Rodar o script e gerar HTML
+        run: |
+          python flashscore.py
+          
+      - name: Enviar arquivo HTML gerado para o repositório
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: 'campeonato_brasileiro.html'
+          message: 'Atualiza HTML diário'
+          author_name: 'GitHub Actions'
+          author_email: 'actions@github.com'
