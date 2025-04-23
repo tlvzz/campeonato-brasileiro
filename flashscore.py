@@ -4,6 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
 import pandas as pd
 import time
+import os
 from collections import defaultdict
 
 def obter_resultados():
@@ -281,6 +282,8 @@ def gerar_html(df_resultados, df_classificacao):
     html = html.replace('<td>2</td>', '<td class="posicao-top">2</td>')
     html = html.replace('<td>3</td>', '<td class="posicao-top">3</td>')
     html = html.replace('<td>4</td>', '<td class="posicao-top">4</td>')
+
+os.makedirs('docs', exist_ok=True)
     
     with open('docs/index.html', 'w', encoding='utf-8') as f:
         f.write(html)
