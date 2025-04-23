@@ -283,8 +283,8 @@ def gerar_html(df_resultados, df_classificacao):
     html = html.replace('<td>3</td>', '<td class="posicao-top">3</td>')
     html = html.replace('<td>4</td>', '<td class="posicao-top">4</td>')
 
-os.makedirs('docs', exist_ok=True)
-    
+    os.makedirs('docs', exist_ok=True)
+
     with open('docs/index.html', 'w', encoding='utf-8') as f:
         f.write(html)
     print("Arquivo HTML gerado com sucesso: campeonato_brasileiro.html")
